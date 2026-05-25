@@ -24,6 +24,12 @@ jobs:
         rm -rf www/*
         cp -r ../* www/ || true
         rm -rf www/build-android
+        
+    - name: Configure App Icon
+      run: |
+        cd build-android
+        cp ../iconmn.webp www/icon.png
+        sed -i '/<\/widget>/i \    <platform name="android">\n        <icon src="www/icon.png" />\n    </platform>' config.xml
 
     - name: Build APK Clean
       run: |
