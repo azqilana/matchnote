@@ -316,9 +316,10 @@ header {
   background-color: var(--warna-muda);
   color: var(--warna-kertas);
   border: none;
-  padding: 5px 9px;
+  padding: 8px 6px;
+  transform: rotate(90deg);
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   z-index: 10;
   line-height: 1;
