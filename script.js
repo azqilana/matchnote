@@ -152,6 +152,7 @@ const btnPanduan = document.getElementById("btn-panduan");
 const mesinHitung = new Hitung();
 let isModeHapus = false;
 let daftarData = [];
+let indeksEdit = null; // null = mode tambah baru, angka = mode edit catatan
 
 // 2. Real-time Event Listener Kalkulator
 isiCatatan.addEventListener('input', function() {
@@ -208,7 +209,10 @@ function tampilkanDaftar() {
     itemDiv.innerHTML = `
       <div class="item-judul" onclick="handleKlikList(this, ${index})">
         <span class="teks-judul">${judulFix}</span>
-        <button class="btn-hapus-satuan" onclick="hapusSatuCatatan(event, ${index})">Hapus</button>
+        <div class="grup-tombol-aksi">
+          <button class="btn-edit-satuan" onclick="editCatatan(event, ${index})">✏️</button>
+          <button class="btn-hapus-satuan" onclick="hapusSatuCatatan(event, ${index})">❌</button>
+        </div>
       </div>
       <div class="item-isi">${item.isi}</div>
     `;
@@ -231,11 +235,31 @@ function hapusSatuCatatan(event, index) {
   }
 }
 
+function editCatatan(event, index) {
+  event.stopPropagation();
+  indeksEdit = index;
+
+  // Muat data catatan ke dalam form
+  inputJudul.value = daftarData[index].judul;
+  isiCatatan.value = daftarData[index].isi;
+
+  // Tampilkan form, sembunyikan daftar
+  sectionCatatan.style.display = 'block';
+  sectionDaftar.style.display = 'none';
+  tooltip.style.display = 'none';
+
+  // Keluar dari mode pilih
+  keluarModeHapus();
+
+  sectionCatatan.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => { isiCatatan.focus(); }, 300);
+}
+
 function keluarModeHapus() {
   isModeHapus = false;
   sectionDaftar.classList.remove('mode-hapus');
   btnMasterHapus.classList.remove('aktif-merah');
-  btnMasterHapus.innerText = 'Hapus';
+  btnMasterHapus.innerText = 'Pilih';
 }
 
 function simpanKeLokal() {
@@ -288,6 +312,9 @@ btnMunculkan.addEventListener('click', function(e) {
 });
 
 btnTutupCatatan.addEventListener('click', function() {
+  indeksEdit = null;
+  inputJudul.value = '';
+  isiCatatan.value = '';
   sectionDaftar.style.display = 'block'
   sectionCatatan.style.display = 'none';
   tooltip.style.display = 'none';
@@ -301,12 +328,20 @@ formCatatan.addEventListener('submit', function(event) {
     return;
   }
   
-  const catatanBaru = { 
+  const catatanData = { 
     judul: inputJudul.value, 
     isi: isiCatatan.value 
   };
   
-  daftarData.unshift(catatanBaru);
+  if (indeksEdit !== null) {
+    // Mode edit: perbarui catatan yang ada
+    daftarData[indeksEdit] = catatanData;
+    indeksEdit = null;
+  } else {
+    // Mode baru: tambahkan di paling atas
+    daftarData.unshift(catatanData);
+  }
+  
   simpanKeLokal();
   keluarModeHapus();
   tampilkanDaftar();

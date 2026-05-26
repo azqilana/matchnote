@@ -265,7 +265,7 @@ header {
 }
 
 .daftar-catatan.mode-hapus .item-catatan {
-  border: 5px solid var(--warna-merah-hapus) !important;
+  border: 5px solid var(--warna-muda) !important;
 }
 
 .item-judul {
@@ -300,22 +300,34 @@ header {
   display: none;
 }
 
-.btn-hapus-satuan {
+.grup-tombol-aksi {
   display: none;
-  background-color: var(--warna-merah-hapus);
-  color: var(--warna-kertas);
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 12px;
-  cursor: pointer;
-  margin-left: 10px;
-  z-index: 10;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
-.daftar-catatan.mode-hapus .btn-hapus-satuan {
-  display: block; 
+.daftar-catatan.mode-hapus .grup-tombol-aksi {
+  display: flex;
+}
+
+.btn-edit-satuan,
+.btn-hapus-satuan {
+  background-color: var(--warna-muda);
+  color: var(--warna-kertas);
+  border: none;
+  padding: 5px 9px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+}
+
+.btn-edit-satuan:active,
+.btn-hapus-satuan:active {
+  opacity: 0.75;
+  transform: scale(0.93);
 }
 
 .item-isi {
