@@ -237,6 +237,7 @@ header {
   position: relative;
   display: flex;
   flex-direction: column;
+  transition: none !important;
 }
 .header-daftar {
   display: flex;
@@ -248,7 +249,7 @@ header {
 }
 .list-daftar {
   overflow-y: auto;
-  height: calc(var(--tinggi) - 100px);
+  height: calc(var(--tinggi) - 150px);
   padding: 21px 10px;
   scrollbar-width: none;
 }

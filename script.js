@@ -291,6 +291,7 @@ function simpanKeLokal() {
   localStorage.setItem('smartnote_array_data', JSON.stringify(daftarData));
   sectionCatatan.style.display = "none"
   sectionDaftar.style.display = "block"
+  sectionDaftar.scrollTop = 0
 }
 
 function muatDataLokal() {
