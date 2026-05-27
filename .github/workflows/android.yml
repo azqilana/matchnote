@@ -1,17 +1,20 @@
-name: Build APK
+name: Build Android APK
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -30,13 +33,17 @@ jobs:
             "private": true
           }' > package.json
 
-      - name: Prepare www folder
+      - name: Prepare Web Files
         run: |
-          mkdir www
+          mkdir -p www
           cp index.html www/
-          cp style.css www/
-          cp script.js www/
-          cp iconmn.png www/ || true
+          cp style.css www/ || true
+          cp script.js www/ || true
+          cp icon.png www/ || true
+          cp *.png www/ || true
+          cp *.jpg www/ || true
+          cp *.jpeg www/ || true
+          cp *.webp www/ || true
 
       - name: Install Capacitor
         run: |
@@ -44,24 +51,30 @@ jobs:
           npm install @capacitor/cli
           npm install @capacitor/android
 
-      - name: Init Capacitor
+      - name: Initialize Capacitor
         run: |
           npx cap init MathNote com.mathnote.app --web-dir www
 
-      - name: Add Android
-        run: npx cap add android
+      - name: Add Android Platform
+        run: |
+          npx cap add android
 
       - name: Sync Android
-        run: npx cap sync android
+        run: |
+          npx cap sync android
 
-      - name: Build APK
+      - name: Build Debug APK
         run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
 
+      - name: Show APK Files
+        run: |
+          find android -name "*.apk"
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: mathnote-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: MathNote-APK
+          path: android/app/build/outputs/apk/debug/*.apk
