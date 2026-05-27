@@ -248,7 +248,7 @@ header {
 }
 .list-daftar {
   overflow-y: auto;
-  max-height: calc(var(--tinggi) - 100px);
+  height: calc(var(--tinggi) - 100px);
   padding: 21px 10px;
   scrollbar-width: none;
 }
