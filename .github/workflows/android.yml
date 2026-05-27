@@ -29,7 +29,7 @@ jobs:
         run: |
           echo '{
             "name": "mathnote",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "private": true
           }' > package.json
 
@@ -39,7 +39,6 @@ jobs:
           cp index.html www/
           cp style.css www/ || true
           cp script.js www/ || true
-          cp icon.png www/ || true
           cp *.png www/ || true
           cp *.jpg www/ || true
           cp *.jpeg www/ || true
@@ -63,9 +62,14 @@ jobs:
         run: |
           npx cap add android
 
-      - name: Generate App Icons
+      - name: Create Resources Folder
         run: |
-          npx capacitor-assets generate --iconBackgroundColor '#ffffff'
+          mkdir -p resources
+          cp icon.png resources/icon.png
+
+      - name: Generate Android Icons
+        run: |
+          npx capacitor-assets generate
 
       - name: Sync Android
         run: |
@@ -84,5 +88,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: MathNote-APK
+          name: MathNote
           path: android/app/build/outputs/apk/debug/*.apk
