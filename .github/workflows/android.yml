@@ -103,7 +103,9 @@ jobs:
       - name: Get Version
         id: version
         run: |
-          echo "version=v$(date +'%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
+          VERSION=$(node -p "require('./package.json').version")
+          BUILD=${{ github.run_number }}
+          echo "version=v${VERSION}-${BUILD}" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -112,10 +114,10 @@ jobs:
           name: MathNote ${{ steps.version.outputs.version }}
           body: |
             ## MathNote - Aplikasi Catatan Dan Kalkulator Pintar
-            
+
             ### Download
             Klik file **MathNote.apk** di bawah untuk mengunduh.
-            
+
             ### Cara Install
             1. Download file MathNote.apk
             2. Buka file APK di HP
