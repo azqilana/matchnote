@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/azqilana/mathnote#readme",
   "dependencies": {
+    "@capacitor/android": "^8.3.4",
     "@capacitor/cli": "^8.3.4",
     "@capacitor/core": "^8.3.4"
   }
