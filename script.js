@@ -422,10 +422,17 @@ function onDeviceReady() {
   },
     false);
 }
-const isAndroidApp =
-window.location.href.startsWith("capacitor://") ||
-window.location.href.startsWith("http://localhost");
-
-if (isAndroidApp) {
-  document.getElementById("downloadBtn").style.display = "none";
+// Sembunyikan tombol Download jika dibuka di Android (Capacitor)
+function cekPlatform() {
+  const isNativeApp = window.Capacitor !== undefined;
+  const downloadBtn = document.getElementById('downloadBtn');
+  
+  if (isNativeApp) {
+    downloadBtn.style.display = 'none'; // Sembunyikan di APK
+  } else {
+    downloadBtn.style.display = 'block'; // Tampilkan di web
+  }
 }
+
+// Panggil saat halaman load
+window.addEventListener('load', cekPlatform);
