@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build APK
 
 on:
   workflow_dispatch:
@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -22,27 +22,28 @@ jobs:
           distribution: temurin
           java-version: 21
 
+      - name: Create package.json
+        run: |
+          echo '{
+            "name": "mathnote",
+            "version": "1.0.0",
+            "private": true
+          }' > package.json
+
       - name: Install Capacitor
         run: |
           npm install @capacitor/core
           npm install @capacitor/cli
           npm install @capacitor/android
 
-      - name: Create package.json
-        run: |
-          echo '{
-            "name": "mathnote",
-            "version": "1.0.0"
-          }' > package.json
-
       - name: Init Capacitor
         run: |
-          npx cap init MathNote com.mathnote.app --web-dir .
+          npx cap init MathNote com.mathnote.app --web-dir . --yes
 
       - name: Add Android
         run: npx cap add android
 
-      - name: Sync Files
+      - name: Sync Android
         run: npx cap sync android
 
       - name: Build APK
