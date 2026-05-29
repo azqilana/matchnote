@@ -39,8 +39,10 @@ jobs:
         run: |
           mkdir -p www
           cp index.html www/
-          cp style.css www/ || true
-          cp script.js www/ || true
+          cp app.js www/
+          cp router.js www/
+          cp routes.json www/
+          cp -r pages www/
           cp *.png www/ || true
           cp *.jpg www/ || true
           cp *.jpeg www/ || true
@@ -59,6 +61,17 @@ jobs:
       - name: Install Splash Screen Plugin
         run: |
           npm install @capacitor/splash-screen
+
+      - name: Create Capacitor Config
+        run: |
+          echo '{
+            "appId": "azq.math.note",
+            "appName": "MathNote",
+            "webDir": "www",
+            "server": {
+              "androidScheme": "https"
+            }
+          }' > capacitor.config.json
 
       - name: Initialize Capacitor
         run: |

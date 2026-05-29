@@ -1,4 +1,4 @@
-/* --- CSS VARIABLES TEMA --- */
+/* --- CSS VARIABLES --- */
 :root {
   --warna-utama: #4a2c11;
   --warna-muda: #a67c52;
@@ -25,25 +25,9 @@
   --ukuran-huruf: 12px;
 }
 
-/* Reset Global & Meratakan Semua ke Tengah */
-* {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-body {
-  background: linear-gradient(to bottom, var(--warna-utama), var(--warna-muda));
-  min-height: 100vh;
-  font-family: sans-serif;
-  position: relative;
-  overflow: hidden;
-}
-
 header {
   padding: 20px 0;
-  color: var(--warna-kertas);
+  color: #ffffff;
 }
 
 .kotak-tema {
@@ -151,9 +135,7 @@ header {
   line-height: 1;
 }
 
-.btn-tutup:hover {
-  color: var(--warna-garis-merah);
-}
+.btn-tutup:hover { color: var(--warna-garis-merah); }
 
 .wrapper-textarea {
   position: relative;
@@ -204,9 +186,7 @@ header {
   cursor: pointer;
 }
 
-.tooltip-hitung button:hover {
-  background-color: var(--warna-muda);
-}
+.tooltip-hitung button:hover { background-color: var(--warna-muda); }
 
 .notif-sukses {
   position: fixed;
@@ -225,9 +205,7 @@ header {
   transition: opacity 0.3s ease-in-out;
 }
 
-.notif-sukses.muncul {
-  opacity: 1;
-}
+.notif-sukses.muncul { opacity: 1; }
 
 .daftar-catatan {
   height: var(--tinggi);
@@ -237,8 +215,8 @@ header {
   position: relative;
   display: flex;
   flex-direction: column;
-  transition: none !important;
 }
+
 .header-daftar {
   display: flex;
   justify-content: center;
@@ -247,6 +225,7 @@ header {
   padding: 0 50px;
   gap: 10px;
 }
+
 .list-daftar {
   overflow-y: auto;
   height: calc(var(--tinggi) - 150px);
@@ -254,24 +233,14 @@ header {
   scrollbar-width: none;
 }
 
-.list-daftar::-webkit-scrollbar {
-  display: none;
-}
-#wadah-list {
-  margin: 15px auto;
-}
-.daftar-catatan .header-riwayat h3 {
-  color: var(--warna-utama);
-  text-align: center !important;
-}
-#copyright {
-  margin-top: auto;
-  padding-top: 10px;
-}
-/*margi 🔄 TOMBOL BATAL HAPUS (Sudah diperbaiki, diletakkan normal berdampingan) */
+.list-daftar::-webkit-scrollbar { display: none; }
+
+#wadah-list { margin: 15px auto; }
+
+#copyright { margin-top: auto; padding-top: 10px; }
+
 .btn-batal-hapus {
   display: none;
-  /* Hanya muncul lewat mode-hapus */
   background-color: var(--warna-biru-batal);
   color: var(--warna-kertas);
   border-radius: 5px;
@@ -280,15 +249,12 @@ header {
   font-size: var(--ukuran-huruf);
   cursor: pointer;
   padding: 8px 15px;
-  /* Sama persis ukurannya dengan tombol hapus semua */
   box-shadow: 0 4px 6px var(--warna-bayangan-soft);
   transition: all 0.3s ease;
   outline: none;
 }
 
-.daftar-catatan.mode-hapus .btn-batal-hapus {
-  display: block;
-}
+.daftar-catatan.mode-hapus .btn-batal-hapus { display: block; }
 
 .item-catatan {
   background: var(--warna-transparan);
@@ -299,9 +265,8 @@ header {
   transition: border 0.2s ease;
 }
 
-.daftar-catatan.mode-hapus .item-catatan {
-  border: 3px solid var(--warna-muda) !important;
-}
+.daftar-catatan.mode-hapus .item-catatan { border: 3px solid var(--warna-muda) !important; }
+
 .daftar-catatan.mode-hapus .header-daftar {
   display: flex;
   justify-content: space-between;
@@ -321,10 +286,7 @@ header {
   user-select: none;
 }
 
-.item-judul .teks-judul {
-  flex-grow: 1;
-  text-align: left;
-}
+.item-judul .teks-judul { flex-grow: 1; text-align: left; }
 
 .item-judul::after {
   content: '▼';
@@ -333,13 +295,9 @@ header {
   margin-left: 10px;
 }
 
-.item-catatan.aktif .item-judul::after {
-  transform: rotate(180deg);
-}
+.item-catatan.aktif .item-judul::after { transform: rotate(180deg); }
 
-.daftar-catatan.mode-hapus .item-judul::after {
-  display: none;
-}
+.daftar-catatan.mode-hapus .item-judul::after { display: none; }
 
 .grup-tombol-aksi {
   display: none;
@@ -348,12 +306,9 @@ header {
   flex-shrink: 0;
 }
 
-.daftar-catatan.mode-hapus .grup-tombol-aksi {
-  display: flex;
-}
+.daftar-catatan.mode-hapus .grup-tombol-aksi { display: flex; }
 
-.btn-edit-satuan,
-.btn-hapus-satuan {
+.btn-edit-satuan, .btn-hapus-satuan {
   background-color: var(--warna-muda);
   color: var(--warna-kertas);
   border: none;
@@ -366,8 +321,7 @@ header {
   line-height: 1;
 }
 
-.btn-edit-satuan:active,
-.btn-hapus-satuan:active {
+.btn-edit-satuan:active, .btn-hapus-satuan:active {
   opacity: 0.75;
   transform: scale(0.93);
 }
@@ -386,7 +340,7 @@ header {
   padding: 15px;
   border-top: 1px dashed var(--warna-utama);
 }
-/* Tombol Pemicu Hapus (Keadaan Normal) */
+
 .btn-pemicu-hapus {
   background: transparent;
   color: var(--warna-utama);
@@ -399,7 +353,6 @@ header {
   transition: all 0.3s ease;
 }
 
-/* Tombol Hapus Semua (Saat Aktif Masuk Mode Hapus) */
 .btn-pemicu-hapus.aktif-merah {
   background-color: var(--warna-merah-hapus);
   color: var(--warna-kertas);
@@ -411,15 +364,10 @@ header {
   padding: 8px 15px;
   box-shadow: 0 4px 6px var(--warna-bayangan-soft);
 }
-/* --- 📋 STYLE POP-UP PANDUAN MATCHNOTE --- */
 
-/* Class utilitas untuk menyembunyikan elemen */
-.hidden {
-  display: none !important;
-}
+/* Panduan */
+.hidden { display: none !important; }
 
-/* Tombol tanya panduan di pojok kiri atas header */
-/* Tombol panduan di pojok kiri atas section daftar catatan (berseberangan dengan tombol +) */
 #btn-panduan {
   position: absolute;
   top: 4px;
@@ -440,11 +388,8 @@ header {
   z-index: 99;
 }
 
-#btn-panduan:active {
-  transform: scale(0.9);
-}
+#btn-panduan:active { transform: scale(0.9); }
 
-/* Background overlay hitam transparan memenuhi layar penuh */
 #halaman-panduan {
   position: fixed;
   top: 0;
@@ -453,13 +398,11 @@ header {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 3000;
-  /* Berada di atas seluruh elemen termasuk notif */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Box Putih Konten Panduan */
 .konten-panduan {
   background-color: var(--warna-kertas);
   color: var(--warna-teks-gelap);
@@ -473,11 +416,7 @@ header {
   flex-direction: column;
 }
 
-.konten-panduan h2 {
-  color: var(--warna-utama);
-  font-size: 24px;
-  margin-bottom: 5px;
-}
+.konten-panduan h2 { color: var(--warna-utama); font-size: 24px; margin-bottom: 5px; }
 
 .garis-pembatas {
   height: 3px;
@@ -485,7 +424,6 @@ header {
   margin-bottom: 15px;
 }
 
-/* Area isi yang bisa di-scroll jika layar HP kecil */
 .isi-scroll-panduan {
   overflow-y: auto;
   text-align: left;
@@ -494,10 +432,7 @@ header {
   padding-right: 5px;
 }
 
-.isi-scroll-panduan p {
-  text-align: left;
-  margin-bottom: 12px;
-}
+.isi-scroll-panduan p { text-align: left; margin-bottom: 12px; }
 
 .isi-scroll-panduan h4 {
   text-align: left;
@@ -507,18 +442,9 @@ header {
   padding-left: 8px;
 }
 
-.isi-scroll-panduan ol {
-  text-align: left;
-  margin-left: 20px;
-  margin-bottom: 10px;
-}
+.isi-scroll-panduan ol { text-align: left; margin-left: 20px; margin-bottom: 10px; }
+.isi-scroll-panduan ol li { text-align: left; margin-bottom: 4px; }
 
-.isi-scroll-panduan ol li {
-  text-align: left;
-  margin-bottom: 4px;
-}
-
-/* Kotak sorotan untuk contoh cara menghitung */
 .kotak-contoh {
   background-color: var(--warna-transparan);
   border-left: 4px solid var(--warna-utama);
@@ -528,14 +454,11 @@ header {
   text-align: left;
 }
 
-.kotak-contoh strong, .kotak-contoh small {
-  text-align: left;
-  display: block;
-}
+.kotak-contoh strong, .kotak-contoh small { text-align: left; display: block; }
 
 .kotak-contoh code {
   font-family: monospace;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0,0,0,0.1);
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 13px;
@@ -545,7 +468,6 @@ header {
   text-align: left;
 }
 
-/* Tombol konfirmasi tutup panduan */
 #tombol-mengerti {
   background-color: var(--warna-utama);
   color: var(--warna-kertas);
@@ -560,106 +482,56 @@ header {
   transition: background 0.2s;
 }
 
-#tombol-mengerti:active {
-  background-color: var(--warna-muda);
-}
+#tombol-mengerti:active { background-color: var(--warna-muda); }
 
-/* tombol download */
+/* Download */
 .download-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   position: relative;
   overflow: hidden;
-
   padding: 14px 24px;
-
   border-radius: 18px;
   border: 1px solid var(--warna-putih-transparan-soft);
-
   background-color: var(--tombol-download);
-
   color: var(--warna-kertas);
-
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.3px;
-
   text-decoration: none;
-
-  box-shadow:
-  0 10px 24px var(--warna-bayangan-soft),
-  inset 0 1px 0 var(--warna-putih-transparan);
-
-  transition:
-  transform 0.2s ease,
-  box-shadow 0.25s ease,
-  filter 0.25s ease;
-
+  box-shadow: 0 10px 24px var(--warna-bayangan-soft), inset 0 1px 0 var(--warna-putih-transparan);
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
   user-select: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
-/* efek shine */
 .download-btn::before {
   content: "";
-
   position: absolute;
   top: 0;
   left: -130%;
-
   width: 90%;
   height: 100%;
-
   transform: skewX(-25deg);
-
-  background:
-  linear-gradient(
-  to right,
-  transparent,
-  var(--warna-putih-shine),
-  transparent
-  );
-
+  background: linear-gradient(to right, transparent, var(--warna-putih-shine), transparent);
   transition: left 0.7s ease;
 }
 
-.download-btn:hover::before {
-  left: 140%;
-}
-
-/* hover */
+.download-btn:hover::before { left: 140%; }
 .download-btn:hover {
   transform: translateY(-2px);
-
-  box-shadow:
-  0 14px 32px var(--warna-bayangan),
-  inset 0 1px 0 var(--warna-putih-transparan-hover);
-
+  box-shadow: 0 14px 32px var(--warna-bayangan), inset 0 1px 0 var(--warna-putih-transparan-hover);
   filter: brightness(1.03);
 }
 
-/* ditekan */
-.download-btn:active {
-  transform: scale(0.97);
-}
+.download-btn:active { transform: scale(0.97); }
+.download-btn .icon { font-size: 18px; line-height: 1; }
 
-/* icon */
-.download-btn .icon {
-  font-size: 18px;
-  line-height: 1;
-}
-
-/* mobile */
 @media (max-width: 480px) {
-  .download-btn {
-    width: 80%;
-    padding: 15px 20px;
-    font-size: 15px;
-  }
+  .download-btn { width: 80%; padding: 15px 20px; font-size: 15px; }
 }
+
 footer {
   display: flex;
   justify-content: center;
