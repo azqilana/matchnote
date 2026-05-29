@@ -380,3 +380,14 @@ function pasangSemuaEvent() {
     document.getElementById('halaman-panduan').classList.remove('hidden')
   })
 }
+function cekPlatform() {
+  const isNativeApp = window.Capacitor !== undefined;
+  const downloadBtn = document.getElementById('downloadBtn');
+  if (isNativeApp) {
+    downloadBtn.style.display = 'none';
+  } else {
+    downloadBtn.style.display = 'block';
+  }
+}
+
+window.addEventListener('load', cekPlatform);
