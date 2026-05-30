@@ -55,7 +55,7 @@ jobs:
           echo '{
             "appId": "azq.math.note",
             "appName": "MathNote",
-            "webDir": "www",
+            "webDir": ".",
             "server": {
               "androidScheme": "https"
             }
