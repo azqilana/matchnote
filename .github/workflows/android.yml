@@ -106,7 +106,7 @@ jobs:
             -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
 
       - name: Rename APK
-        run: cp android/app/build/outputs/apk/release/app-release.apk MathNote.apk
+        run: cp android/app/build/outputs/apk/release/app-release.apk MathNote${VERSION}.apk
 
       - name: Get Version
         id: version
