@@ -145,11 +145,11 @@ async function handleRequest(event) {
 
       if (method === 'DELETE') {
         await env.DB.prepare('DELETE FROM catatan WHERE id = ?').bind(id).run()
-        return response({ message: 'Catatan dihapus!' })
+        return response({ message: 'Catatan dihancurkan!' })
       }
     }
 
-    return response({ error: 'Endpoint tidak ditemukan' }, 404)
+    return response({ error: 'Endpoint tidak ada' }, 404)
   }
 
   // ── Serve file statis dari www/ ──
