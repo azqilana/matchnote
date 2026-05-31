@@ -4,12 +4,6 @@
 
 export default function () {
   return `
-    <!-- Banner Guest -->
-    <div id="banner-guest" style="display:none;background:#fff3cd;padding:0.6rem 1rem;justify-content:center;align-items:center;gap:0.5rem;font-size:0.85rem;color:#856404;">
-      <span>⚠️ Mode tamu — catatan tidak tersimpan permanen</span>
-      <button onclick="ark.navigate('/login')" style="background:#4a2c11;color:white;border:none;padding:4px 12px;border-radius:6px;font-size:0.8rem;cursor:pointer;">Masuk</button>
-    </div>
-
     <!-- Pop-up Panduan -->
     <div id="halaman-panduan" class="hidden">
       <div class="konten-panduan">
