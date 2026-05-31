@@ -1,9 +1,7 @@
 /**
  * MathNote - Cloudflare Worker
- * Serve file web statis + handle API
+ * Serve file web statis dari Root + handle API
  */
-
-import { getAssetFromKV } from '@cloudflare/kv-asset-handler'
 
 // ─────────────────────────────
 // CORS Headers
@@ -56,7 +54,7 @@ async function hashPassword(password) {
 }
 
 // ─────────────────────────────
-// Main Handler (ES Module Format)
+// Main Handler (ES Module)
 // ─────────────────────────────
 export default {
   async fetch(request, env, ctx) {
@@ -147,28 +145,8 @@ export default {
       return response({ error: 'Endpoint tidak ada' }, 404)
     }
 
-    // Buat fake event object untuk kv-asset-handler agar tidak merusak kode bawaan
-    const fakeEvent = {
-      request,
-      waitUntil: ctx.waitUntil.bind(ctx)
-    }
-
-    // ── Serve file statis dari www/ ──
-    try {
-      return await getAssetFromKV(fakeEvent)
-    } catch (e) {
-      // Kalau file tidak ditemukan, serve index.html (SPA fallback)
-      try {
-        const notFoundResponse = await getAssetFromKV(fakeEvent, {
-          mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/index.html`, req),
-        })
-        return new Response(notFoundResponse.body, {
-          ...notFoundResponse,
-          status: 200,
-        })
-      } catch (e) {
-        return new Response('Not Found', { status: 404 })
-      }
-    }
+    // ── Serve File Statis Langsung dari Pages Asset Bawaan ──
+    // Kode di bawah ini otomatis mengambil index.html atau file aset di root repositori kamu
+    return env.ASSETS.fetch(request)
   }
 }
